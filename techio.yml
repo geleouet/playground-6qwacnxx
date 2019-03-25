@@ -1,11 +1,11 @@
-title : Java Maven Project
+title : Exercices from 'Reinforcement Learning: An Introduction' Richard S. Sutton & Andrew G. Barto
 
 # Table of content
 plan:
-  - title: Welcome # Set the page title (only displayed if your contribution has several pages)
+  - title: Welcome
     statement: markdowns/welcome.md # Set the file path to the page content
-#  - title: Another Page
-#    statement: markdowns/another-page.md
+  - title: Multi-armed Bandits
+    statement: markdowns/MultiArmedBandits.md
 
 
 # Settings for your programming projects and the associated Docker images

@@ -5,19 +5,43 @@
 <script type="text/javascript" src="./plotly-latest.min.js"></script>
 <script type="text/javascript">
 window.onload = function () {
-var x = [];
-var y = [];
+
+var datas0;
+var datas1;
+var datas2;
 chart = document.getElementById('chartContainer');
-$.getJSON("./datas.json", function(data) {  
+$.getJSON("./datas.json", function(data) {
+	var x = [];
+	var y = [];  
 	$.each(data, function(key, value){
 		x.push(value[0]);
 		y.push(parseFloat(value[1]));		
 	});	
-	Plotly.plot( chart, [{
-	x: x,
-	y: y}], {
-	margin: { t: 0 } } );
-});
+	datas0 ={x,y};
+	Plotly.newPlot( chart, [datas0], {margin: { t: 10 } } );
+}).error(function() {});;
+$.getJSON("./datas2.json", function(data) {
+	var x = [];
+	var y = [];  
+	$.each(data, function(key, value){
+		x.push(value[0]);
+		y.push(parseFloat(value[1]));		
+	});
+	datas1 ={x,y};
+	datas =[datas0, datas1];	
+	Plotly.newPlot( chart, datas, {	margin: { t: 10 } } );
+}).error(function() {});;
+$.getJSON("./datas3.json", function(data) {
+	var x = [];
+	var y = [];  
+	$.each(data, function(key, value){
+		x.push(value[0]);
+		y.push(parseFloat(value[1]));		
+	});
+	datas2 ={x,y};
+	datas =[datas0, datas1, datas2];	
+	Plotly.newPlot( chart, datas, {	margin: { t: 10 } } );
+}).error(function() {});
 }
 </script>
 

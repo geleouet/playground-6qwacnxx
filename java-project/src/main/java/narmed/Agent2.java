@@ -31,14 +31,20 @@ public class Agent2 {
 
 	public AgentAction action() {
 		int choice = 0;
-		for (int i = 0; i < nbArmedBandit; i++) {
-			if (means[i]>means[choice]) {
-				choice = i;
+		double epsilon = 0.1;
+		if (new Random().nextDouble() < epsilon) {
+			choice = new Random().nextInt(nbArmedBandit);
+		}
+		else {
+			for (int i = 0; i < nbArmedBandit; i++) {
+				if (means[i]>means[choice]) {
+					choice = i;
+				}
 			}
 		}
 		int choice$ = choice;
 		AgentCallback callback = new AgentCallback() {
-			
+
 			@Override
 			public void reward(double reward) {
 				rewards[choice$] += reward;
