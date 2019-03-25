@@ -11,7 +11,7 @@ public class Bandit {
 	Random r;
 	double mean;
 	
-	private Bandit(Random r, double mean) {
+	Bandit(Random r, double mean) {
 		super();
 		this.r = r;
 		this.mean = mean;
