@@ -1,6 +1,6 @@
 # Welcome!
 
-This playground offers some exercices related to the book 
+This playground offers some exercises related to the book 
 
 ## Reinforcement Learning: An Introduction
 
