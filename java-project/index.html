@@ -17,7 +17,7 @@ $.getJSON("./datas.json", function(data) {
 		x.push(value[0]);
 		y.push(parseFloat(value[1]));		
 	});	
-	datas0 ={x,y};
+	datas0 ={x,y, 'name':'Greedy'};
 	Plotly.newPlot( chart, [datas0], {margin: { t: 10 } } );
 }).error(function() {});;
 $.getJSON("./datas2.json", function(data) {
@@ -27,7 +27,7 @@ $.getJSON("./datas2.json", function(data) {
 		x.push(value[0]);
 		y.push(parseFloat(value[1]));		
 	});
-	datas1 ={x,y};
+	datas1 ={x,y, 'name':'Ɛ-Greedy 0.1'};
 	datas =[datas0, datas1];	
 	Plotly.newPlot( chart, datas, {	margin: { t: 10 } } );
 }).error(function() {});;
@@ -38,7 +38,7 @@ $.getJSON("./datas3.json", function(data) {
 		x.push(value[0]);
 		y.push(parseFloat(value[1]));		
 	});
-	datas2 ={x,y};
+	datas2 ={x,y, 'name':'Ɛ-Greedy 0.01'};
 	datas =[datas0, datas1, datas2];	
 	Plotly.newPlot( chart, datas, {	margin: { t: 10 } } );
 }).error(function() {});
