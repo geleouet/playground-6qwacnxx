@@ -2,7 +2,7 @@ package narmed;
 
 import java.util.Random;
 
-public class Agent {
+public class Agent implements BanditAgent {
 
 	private int nbArmedBandit;
 	
@@ -10,6 +10,7 @@ public class Agent {
 		this.nbArmedBandit = nbArmedBandit;
 	}
 	
+	@Override
 	public AgentAction action() {
 		int choice = new Random().nextInt(nbArmedBandit);
 		AgentCallback callback = new AgentCallback() {
