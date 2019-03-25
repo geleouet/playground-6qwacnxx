@@ -12,7 +12,7 @@
 
 @[Ɛ-greedy]({"stubs": ["src/main/java/narmed/Agent.java"], "command": "narmed.AgentTest#testEpsilon2"})
 
-# Implement a constant step size parameter algorithm, with alpha 0.1
+# Implement a constant step size parameter algorithm, with epsilon 0.1 and alpha 0.1
 
 @[α-greedy]({"stubs": ["src/main/java/narmed/Agent.java"], "command": "narmed.AgentTest#testEpsilon3"})
 

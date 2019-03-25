@@ -98,6 +98,7 @@ public class AgentTest {
 				double reward = simu.play(action);
 				results[i].result[k] = reward;
 			}
+			simu.toString();
 		}
 		ResultTime result = new ResultTime(NB_TURN);
 		result.mean(results);

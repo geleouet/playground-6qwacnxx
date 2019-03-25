@@ -16,9 +16,11 @@ public class Simu {
 	
 	private final Bandit[] bandits;
 	private final int nbArmedBandit;
+	private Consumer<Bandit> updateBandit;
 	
 	public Simu(int nbArmedBandit, Supplier<Bandit> banditFactory, Consumer<Bandit> updateBandit) {
 		this.nbArmedBandit = nbArmedBandit;
+		this.updateBandit = updateBandit;
 		Random r = new Random();
 		bandits = new Bandit[nbArmedBandit];
 		for (int i = 0; i < nbArmedBandit; i++) {
@@ -30,6 +32,9 @@ public class Simu {
 		if (action.choice >=0 && action.choice < nbArmedBandit) {
 			double reward = bandits[action.choice].next();
 			action.callback.reward(reward);
+			for (Bandit b : bandits) {
+				updateBandit.accept(b);
+			}
 			return reward;
 		}
 		throw new RuntimeException("Invalid choice "+action.choice+" is not between [0, "+nbArmedBandit+"[");
