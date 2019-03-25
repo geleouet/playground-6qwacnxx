@@ -17,7 +17,7 @@ var chart = new CanvasJS.Chart("chartContainer",{
 });
 $.getJSON("./datas.json", function(data) {  
 	$.each(data, function(key, value){
-		dataPoints.push({x: value[0], y: parseInt(value[1])});
+		dataPoints.push({x: value[0], y: parseFloat(value[1])});
 	});	
 	chart.render();
 });
