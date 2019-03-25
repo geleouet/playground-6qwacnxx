@@ -29,7 +29,7 @@ public class AgentTest {
 			m+=result.result[j];
 		}
 		m=m/(NB_TURN-100);
-		assertThat(m).isBetween(0.99, 1.01).as("Mean should be 1. %f", m);
+		assertThat(m).isBetween(0.9, 1.1).as("Mean should be 1. %f", m);
 		
 	}
 	@Test
@@ -44,11 +44,11 @@ public class AgentTest {
 		System.out.println("TECHIO> open -s /project/target index.html");
 		
 		double m = 0.;
-		for (int j = 100; j<NB_TURN; j++) {
+		for (int j = 400; j<NB_TURN; j++) {
 			m+=result.result[j];
 		}
-		m=m/(NB_TURN-100);
-		assertThat(m).isBetween(1.49, 1.51).as("Mean should be 1.5 %f", m);
+		m=m/(NB_TURN-400);
+		assertThat(m).isBetween(1.4, 1.6).as("Mean should be 1.5 %f", m);
 		
 	}
 	@Test
@@ -67,7 +67,7 @@ public class AgentTest {
 			m+=result.result[j];
 		}
 		m=m/(NB_TURN-100);
-		assertThat(m).isBetween(0.99, 1.01).as("Mean should be 1. %f", m);
+		assertThat(m).isBetween(1.1, 1.4).as("Mean should be between 1. and 1.5 %f", m);
 		
 	}
 
