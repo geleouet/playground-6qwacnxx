@@ -32,6 +32,44 @@ public class AgentTest {
 		assertThat(m).isBetween(0.99, 1.01).as("Mean should be 1. %f", m);
 		
 	}
+	@Test
+	public void testEpsilon() throws FileNotFoundException {
+		int NB_SIMU = 2000;
+		int NB_TURN = 1000;
+		int NB_BANDIT = 10;
+		
+		Supplier<BanditAgent> agentFactory = () -> new Agent(NB_BANDIT);
+		ResultTime result = simulate(NB_SIMU, NB_TURN, NB_BANDIT, agentFactory);
+		writeResult(result, "datas.json");
+		System.out.println("TECHIO> open -s /project/target index.html");
+		
+		double m = 0.;
+		for (int j = 100; j<NB_TURN; j++) {
+			m+=result.result[j];
+		}
+		m=m/(NB_TURN-100);
+		assertThat(m).isBetween(1.49, 1.51).as("Mean should be 1.5 %f", m);
+		
+	}
+	@Test
+	public void testEpsilon2() throws FileNotFoundException {
+		int NB_SIMU = 2000;
+		int NB_TURN = 1000;
+		int NB_BANDIT = 10;
+		
+		Supplier<BanditAgent> agentFactory = () -> new Agent(NB_BANDIT);
+		ResultTime result = simulate(NB_SIMU, NB_TURN, NB_BANDIT, agentFactory);
+		writeResult(result, "datas.json");
+		System.out.println("TECHIO> open -s /project/target index.html");
+		
+		double m = 0.;
+		for (int j = 100; j<NB_TURN; j++) {
+			m+=result.result[j];
+		}
+		m=m/(NB_TURN-100);
+		assertThat(m).isBetween(0.99, 1.01).as("Mean should be 1. %f", m);
+		
+	}
 
 	private ResultTime simulate(int NB_SIMU, int NB_TURN, int NB_BANDIT, Supplier<BanditAgent> agentFactory) {
 		ResultTime[] results = new ResultTime[NB_SIMU];
