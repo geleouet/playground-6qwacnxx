@@ -35,7 +35,7 @@ public class AgentTest {
 	@Test
 	public void testEpsilon() throws FileNotFoundException {
 		int NB_SIMU = 2000;
-		int NB_TURN = 10000;
+		int NB_TURN = 1000;
 		int NB_BANDIT = 10;
 		
 		Supplier<BanditAgent> agentFactory = () -> new Agent(NB_BANDIT);
@@ -54,7 +54,7 @@ public class AgentTest {
 	@Test
 	public void testEpsilon2() throws FileNotFoundException {
 		int NB_SIMU = 2000;
-		int NB_TURN = 10000;
+		int NB_TURN = 1000;
 		int NB_BANDIT = 10;
 		
 		Supplier<BanditAgent> agentFactory = () -> new Agent(NB_BANDIT);
