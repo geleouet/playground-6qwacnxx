@@ -82,7 +82,7 @@ public class AgentTest {
 		msg("INFO", "Starting");
 
 		int NB_SIMU = 2000;
-		int NB_TURN = 10000;
+		int NB_TURN = 1000;
 		int NB_BANDIT = 10;
 		
 		Supplier<BanditAgent> agentFactory = () -> new Agent(NB_BANDIT);
