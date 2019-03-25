@@ -35,7 +35,7 @@ public class AgentTest {
 	@Test
 	public void testEpsilon() throws FileNotFoundException {
 		int NB_SIMU = 2000;
-		int NB_TURN = 1000;
+		int NB_TURN = 10000;
 		int NB_BANDIT = 10;
 		
 		Supplier<BanditAgent> agentFactory = () -> new Agent(NB_BANDIT);
@@ -48,13 +48,13 @@ public class AgentTest {
 			m+=result.result[j];
 		}
 		m=m/(NB_TURN-400);
-		assertThat(m).isBetween(1.4, 1.6).as("Mean should be 1.5 %f", m);
+		assertThat(m).isBetween(1.3, 1.4).as("Mean should be 1.4 %f", m);
 		
 	}
 	@Test
 	public void testEpsilon2() throws FileNotFoundException {
 		int NB_SIMU = 2000;
-		int NB_TURN = 1000;
+		int NB_TURN = 10000;
 		int NB_BANDIT = 10;
 		
 		Supplier<BanditAgent> agentFactory = () -> new Agent(NB_BANDIT);
@@ -67,7 +67,7 @@ public class AgentTest {
 			m+=result.result[j];
 		}
 		m=m/(NB_TURN-100);
-		assertThat(m).isBetween(1.1, 1.4).as("Mean should be between 1. and 1.5 %f", m);
+		assertThat(m).isBetween(1.1, 1.3).as("Mean should be between 1. and 1.5 %f", m);
 		
 	}
 
