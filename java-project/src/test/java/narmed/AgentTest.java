@@ -20,7 +20,7 @@ public class AgentTest {
 		int NB_BANDIT = 10;
 		
 		Supplier<BanditAgent> agentFactory = () -> new Agent(NB_BANDIT);
-		ResultTime result = simulate(NB_SIMU, NB_TURN, NB_BANDIT, agentFactory);
+		ResultTime result = simulate(NB_SIMU, NB_TURN, NB_BANDIT, agentFactory, () -> Simu.create(NB_BANDIT));
 		writeResult(result, "datas.json");
 		System.out.println("TECHIO> open -s /project/target index.html");
 		
@@ -39,9 +39,9 @@ public class AgentTest {
 		int NB_BANDIT = 10;
 		
 		Supplier<BanditAgent> agentFactory = () -> new Agent(NB_BANDIT);
-		ResultTime result = simulate(NB_SIMU, NB_TURN, NB_BANDIT, agentFactory);
+		ResultTime result = simulate(NB_SIMU, NB_TURN, NB_BANDIT, agentFactory, () -> Simu.create(NB_BANDIT));
 		writeResult(result, "datas2.json");
-		writeResult(simulate(NB_SIMU, NB_TURN, NB_BANDIT, () -> new GreedyAgent(NB_BANDIT, 0)), "datas.json");
+		writeResult(simulate(NB_SIMU, NB_TURN, NB_BANDIT, () -> new GreedyAgent(NB_BANDIT, 0), () -> Simu.create(NB_BANDIT)), "datas.json");
 		System.out.println("TECHIO> open -s /project/target index.html");
 		
 		double m = 0.;
@@ -59,10 +59,10 @@ public class AgentTest {
 		int NB_BANDIT = 10;
 		
 		Supplier<BanditAgent> agentFactory = () -> new Agent(NB_BANDIT);
-		ResultTime result = simulate(NB_SIMU, NB_TURN, NB_BANDIT, agentFactory);
+		ResultTime result = simulate(NB_SIMU, NB_TURN, NB_BANDIT, agentFactory, () -> Simu.create(NB_BANDIT));
 		writeResult(result, "datas3.json");
-		writeResult(simulate(NB_SIMU, NB_TURN, NB_BANDIT, () -> new GreedyAgent(NB_BANDIT, 0.1)), "datas2.json");
-		writeResult(simulate(NB_SIMU, NB_TURN, NB_BANDIT, () -> new GreedyAgent(NB_BANDIT, 0)), "datas.json");
+		writeResult(simulate(NB_SIMU, NB_TURN, NB_BANDIT, () -> new GreedyAgent(NB_BANDIT, 0.1), () -> Simu.create(NB_BANDIT)), "datas2.json");
+		writeResult(simulate(NB_SIMU, NB_TURN, NB_BANDIT, () -> new GreedyAgent(NB_BANDIT, 0), () -> Simu.create(NB_BANDIT)), "datas.json");
 		System.out.println("TECHIO> open -s /project/target index.html");
 		
 		double m = 0.;
@@ -73,12 +73,25 @@ public class AgentTest {
 		assertThat(m).isBetween(1.1, 1.3).as("Mean should be between 1. and 1.5 %f", m);
 		
 	}
+	@Test
+	public void testEpsilon3() throws FileNotFoundException {
+		int NB_SIMU = 2000;
+		int NB_TURN = 10000;
+		int NB_BANDIT = 10;
+		
+		Supplier<BanditAgent> agentFactory = () -> new Agent(NB_BANDIT);
+		ResultTime result = simulate(NB_SIMU, NB_TURN, NB_BANDIT, agentFactory, () -> Simu.createWalkingBandit(NB_BANDIT));
+		writeResult(result, "datas3.json");
+		writeResult(simulate(NB_SIMU, NB_TURN, NB_BANDIT, () -> new GreedyAgent(NB_BANDIT, 0.1), () -> Simu.createWalkingBandit(NB_BANDIT)), "datas2.json");
+		writeResult(simulate(NB_SIMU, NB_TURN, NB_BANDIT, () -> new GreedyAgent(NB_BANDIT, 0), () -> Simu.createWalkingBandit(NB_BANDIT)), "datas.json");
+		System.out.println("TECHIO> open -s /project/target index.html");
+	}
 
-	private ResultTime simulate(int NB_SIMU, int NB_TURN, int NB_BANDIT, Supplier<BanditAgent> agentFactory) {
+	private ResultTime simulate(int NB_SIMU, int NB_TURN, int NB_BANDIT, Supplier<BanditAgent> agentFactory, Supplier<Simu> simuFactory) {
 		ResultTime[] results = new ResultTime[NB_SIMU];
 		for (int i =0; i < NB_SIMU; i++) {
 			results[i] = new ResultTime(NB_TURN);
-			Simu simu = Simu.create(NB_BANDIT);
+			Simu simu =simuFactory.get(); 
 			BanditAgent agent = agentFactory.get();
 			for (int k = 0; k <NB_TURN; k++) {
 				AgentAction action = agent.action();
