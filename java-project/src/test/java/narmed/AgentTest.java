@@ -40,7 +40,10 @@ public class AgentTest {
 		
 		Supplier<BanditAgent> agentFactory = () -> new Agent(NB_BANDIT);
 		ResultTime result = simulate(NB_SIMU, NB_TURN, NB_BANDIT, agentFactory);
-		writeResult(result, "datas.json");
+		writeResult(result, "datas2.json");
+		Supplier<BanditAgent> agentFactoryGreedy = () -> new GreedyAgent(NB_BANDIT, 0);
+		ResultTime resultGreedy = simulate(NB_SIMU, NB_TURN, NB_BANDIT, agentFactoryGreedy);
+		writeResult(resultGreedy, "datas.json");
 		System.out.println("TECHIO> open -s /project/target index.html");
 		
 		double m = 0.;
