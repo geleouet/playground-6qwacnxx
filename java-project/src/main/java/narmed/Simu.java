@@ -11,7 +11,8 @@ public class Simu {
 		return new Simu(nbArmedBandit, ()-> Bandit.createBandit(new Random()), b-> {});
 	}
 	public static Simu createWalkingBandit(int nbArmedBandit) {
-		return new Simu(nbArmedBandit, ()-> new Bandit(new Random(), 0.), b-> b.mean+=new Random().nextGaussian()/100.);
+		Random r$= new Random();
+		return new Simu(nbArmedBandit, ()-> new Bandit(new Random(), 0.), b-> b.mean+=r$.nextGaussian()/100.);
 	}
 	
 	private final Bandit[] bandits;
