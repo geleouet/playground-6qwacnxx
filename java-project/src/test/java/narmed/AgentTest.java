@@ -15,6 +15,7 @@ public class AgentTest {
 
 	@Test
 	public void test() throws FileNotFoundException {
+		msg("INFO", "Starting");
 		int NB_SIMU = 2000;
 		int NB_TURN = 1000;
 		int NB_BANDIT = 10;
@@ -34,6 +35,7 @@ public class AgentTest {
 	}
 	@Test
 	public void testEpsilon() throws FileNotFoundException {
+		msg("INFO", "Starting");
 		int NB_SIMU = 2000;
 		int NB_TURN = 1000;
 		int NB_BANDIT = 10;
@@ -54,6 +56,8 @@ public class AgentTest {
 	}
 	@Test
 	public void testEpsilon2() throws FileNotFoundException {
+		msg("INFO", "Starting");
+
 		int NB_SIMU = 2000;
 		int NB_TURN = 1000;
 		int NB_BANDIT = 10;
@@ -75,6 +79,8 @@ public class AgentTest {
 	}
 	@Test
 	public void testEpsilon3() throws FileNotFoundException {
+		msg("INFO", "Starting");
+
 		int NB_SIMU = 2000;
 		int NB_TURN = 10000;
 		int NB_BANDIT = 10;
